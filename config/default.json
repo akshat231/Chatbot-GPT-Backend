@@ -1,0 +1,47 @@
+{
+  "instanceType": "development",
+  "server": {
+    "host": "localhost",
+    "port": 5000,
+    "corsWhiteList": ["localhost"]
+  },
+  "cors": {
+    "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    "allowedHeaders": ["Content-Type", "Authorization"]
+  },
+  "database": {
+    "supabase": {
+      "anonKey": "###YOUR_SUPABASE_ANON_KEY###",
+      "serviceRole": "###YOUR_SUPABASE_SERVICE_ROLE_KEY###",
+      "url": "###YOUR_SUPABASE_URL###",
+      "documentStorageBucket": "tempdocumentsbucket",
+      "projectId": "###YOUR_SUPABASE_PROJECT_ID###"
+    }
+  },
+  "langfuse": {
+    "publicKey": "##YOUR_LANGFUSE_PUBLIC_KEY##",
+    "secretKey": "###YOUR_LANGFUSE_SECRET_KEY###",
+    "baseUrl": "https://cloud.langfuse.com"
+  },
+  "cypto": {
+    "algorithm": "aes-256-cbc",
+    "key": "###YOUR_ENCRYPTION_KEY###",
+    "iv": "###YOUR_INITIALIZATION_VECTOR###"
+  },
+  "adminInfo": {
+    "email": "##YOUR_ADMIN_EMAIL###",
+    "appPassword": "##YOUR_ADMIN_APP_PASSWORD###"
+  },
+  "jwt": {
+    "secret": "###YOUR_JWT_SECRET###"
+  },
+  "llm": {
+    "openai": {
+      "modelProvider": "openai",
+      "modelName": "gpt-4o-mini",
+      "embeddingModelName": "text-embedding-3-small",
+      "temperature": 0.3,
+      "apiKey": "####YOUR_OPENAI_API_KEY####"
+    }
+  }
+}
