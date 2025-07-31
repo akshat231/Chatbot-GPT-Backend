@@ -1,5 +1,5 @@
 const logger = require('../utilities/logger');
-const { initializeMongo } = require('../databases/mongo');
+// const { initializeMongo } = require('../databases/mongo');
 const { initializeSupabase } = require('../databases/supabase');
 const app = require('express')();
 

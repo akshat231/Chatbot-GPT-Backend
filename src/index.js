@@ -5,15 +5,40 @@ const { initializeServices } = require('./startup');
 const middleware = require('./middlewares');
 const apiRouter = require('./routes');
 const errorHandler = require('./middlewares/error')
+const cors = require('cors');
 require('dotenv').config();
 const cronService = require('./services/cronService');
+
+
+
+
+const allowedOrigins = [
+  process.env.REQUEST_ORIGIN || '*'
+];
+
+const allowedMethods = config.get('cors.methods')
+const allowedHeaders = config.get('cors.allowedHeaders');
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: allowedMethods,
+  allowedHeaders: allowedHeaders
+};
+
+
 
 const createApp = async () => {
   logger.info('Starting App');
   const { app } = await initializeServices({
-    mongo: false,
     supabase: true
   })
+  app.use(cors(corsOptions));
   app.use(middleware);
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
