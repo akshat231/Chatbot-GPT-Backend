@@ -19,9 +19,17 @@ const createApp = async () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use('/api', apiRouter);
   app.use(errorHandler);
-  const server = app.listen(process.env.PORT || config.get('port'), ()=> {
-    logger.info(`Server running on port ${process.env.PORT || config.get('port')}`);
-  })
+
+
+
+const server = app.listen(
+  process.env.PORT || config.get('port'),
+  process.env.HOST || 'localhost',
+  () => {
+    logger.info(`Server running on http://${process.env.HOST || 'localhost'}:${process.env.PORT || config.get('port')}`);
+  }
+);
+
 };
 
 createApp().catch((err) => {logger.error(`Error while starting app: ${err}`)
