@@ -1,6 +1,7 @@
 const logger = require('./utilities/logger');
 const bodyParser = require('body-parser');
 const config = require('config').get('server');
+const corsConfig = require('config').get('cors');
 const { initializeServices } = require('./startup');
 const middleware = require('./middlewares');
 const apiRouter = require('./routes');
@@ -16,8 +17,8 @@ const allowedOrigins = [
   process.env.REQUEST_ORIGIN || '*'
 ];
 
-const allowedMethods = config.get('cors.methods')
-const allowedHeaders = config.get('cors.allowedHeaders');
+const allowedMethods = corsConfig.get('methods')
+const allowedHeaders = corsConfig.get('allowedHeaders');
 
 const corsOptions = {
   origin: (origin, callback) => {
